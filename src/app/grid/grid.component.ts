@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SkyAgGridModule, SkyAgGridService } from '@skyux/ag-grid';
 import { AgGridModule } from 'ag-grid-angular';
 import { columnDefinitions, data } from './data-set';
+import { CustomLinkComponent } from './custom-link/custom-link.component';
 
 @Component({
   selector: 'app-grid',
@@ -17,6 +18,11 @@ export class GridComponent {
     gridOptions: {
       domLayout: 'normal',
       columnDefs: columnDefinitions,
+      columnTypes: {
+        custom_link: {
+          cellRenderer: CustomLinkComponent,
+        },
+      },
       rowData: data,
     },
   });
