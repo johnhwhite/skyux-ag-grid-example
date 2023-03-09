@@ -17,6 +17,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "autonumeric",
+              "dragula",
+              "fontfaceobserver",
+              "ng2-dragula",
+              "moment"
+            ],
             "outputPath": "dist/skyux-ag-grid-row-select",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -80,8 +87,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -1,36 +1,22 @@
-import {
-  Component,
-  Renderer2
-} from '@angular/core';
+import { Component, inject, Renderer2 } from '@angular/core';
 
 import {
   SkyTheme,
   SkyThemeMode,
   SkyThemeService,
-  SkyThemeSettings
+  SkyThemeSettings,
 } from '@skyux/theme';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `<app-grid></app-grid>`,
 })
 export class AppComponent {
-  public title = 'skyux-ag-grid-row-select';
-
-  constructor(
-    themeSvc: SkyThemeService,
-    renderer: Renderer2
-  ) {
-    const themeSettings = new SkyThemeSettings(
-      SkyTheme.presets['default'],
-      SkyThemeMode.presets.light
-    );
-
-    themeSvc.init(
+  constructor() {
+    inject(SkyThemeService).init(
       document.body,
-      renderer,
-      themeSettings
+      inject(Renderer2),
+      new SkyThemeSettings(SkyTheme.presets.modern, SkyThemeMode.presets.light)
     );
   }
 }
